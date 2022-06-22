@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch } from 'react-redux';
 import { fileterCharacter } from '../Action_reducer/Actions';
 
-export default function Rough() {
+export default function SearchButton() {
     const [name,setName] = useState('')
     const dispatch = useDispatch()
     const nameHandler = ()=>{

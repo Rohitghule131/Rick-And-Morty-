@@ -24,15 +24,12 @@
 .cards_container{
     margin-top: 6%;
     justify-content: center;
-    background: ;
 }
 #fillterHeader{
     text-align: center;
 }
 #filters{
-    display: inline-flex;
-    justify-content: center;
-    width: max-content;
+    border: 1px solid;
 }
 
 /* For Favourite Screen */
@@ -46,4 +43,14 @@
 #favouriteScreenHeading{
     text-align: center;
     margin-top: 4%;
+}
+
+/* for pagination */
+
+#pagination{
+    background: honeydew;
+    display: inline-flex;
+    width: 100%;
+    padding: 22px;
+    justify-content: center;
 }

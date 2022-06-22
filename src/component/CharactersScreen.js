@@ -9,7 +9,9 @@ import Select from '@mui/material/Select';
 import { fileterCharacter } from '../Action_reducer/Actions';
 import { useDispatch } from 'react-redux';
 // 'species=Human&status=alive'
-import Rough from './rough';
+import SearchButton from './SearchButton';
+import { Grid, } from '@mui/material';
+import PaginationOfPages from './Pagination';
 
 function CharactersScreen() {
   // const [filtertype,setFilterType] = useState('')
@@ -26,8 +28,9 @@ function CharactersScreen() {
   const styleBox = {
     'width':'100%',
     'display':'inline-flex',
-    'border':'1px solid',
-    'padding':'10px'
+    'justify-content':'center',
+    // 'border':'1px solid',
+    'padding':'10px',
   }
   const styleBoxInput = {
     'width':'20%',
@@ -36,7 +39,7 @@ function CharactersScreen() {
   return (
     <div className='cards_container'>
       <h6 id='fillterHeader'>Filter Your Favourite Character Here</h6>
-      {/* <div id='filters'> */}
+      <div id='filters'>
       <Box style={styleBox}>
       <FormControl style={styleBoxInput} fullWidth>
           <InputLabel id="demo-simple-select-label">Species</InputLabel>
@@ -89,12 +92,16 @@ function CharactersScreen() {
             <MenuItem value={'status=unknown'}>Unknown</MenuItem>
           </Select>
         </FormControl>
-        <Rough/>
+        <SearchButton/>
       </Box>
-      {/* </div> */}
+      
+      </div>
       <div className='grid_container'>
         <Charactercards />
       </div>
+        <div id='pagination'>
+          <PaginationOfPages/>
+        </div>
     </div>
 
   )

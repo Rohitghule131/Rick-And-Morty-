@@ -47,6 +47,9 @@ function FavouriteScreen() {
                             SPACIES  :  {elem.species.toUpperCase()}
                         </Typography>
                         <Typography fontSize='0.675rem' variant="body2" color="text.secondary">
+                            GENDER  :  {elem.gender.toUpperCase()}
+                        </Typography>
+                        <Typography fontSize='0.675rem' variant="body2" color="text.secondary">
                             ALIVE    :  {elem.status.toUpperCase()}
                         </Typography>
                     </CardContent>

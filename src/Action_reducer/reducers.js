@@ -8,7 +8,7 @@ const initialState = {
     numberOfFav:0,
     loading:true,
     loaded:false,
-    loadError:false
+    loadError:false,
 }
 
 export const favouriteCharacter = createAsyncThunk('get/favCharacter', async(characterAPI)=>{
@@ -63,5 +63,6 @@ const characterSlice = createSlice({
         })
     }
 })
+
 
 export default characterSlice.reducer;
