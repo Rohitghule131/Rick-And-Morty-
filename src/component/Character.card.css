@@ -1,0 +1,49 @@
+.grid_container {
+    /* margin-top: 8%; */
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin-top: 2%;
+    margin-left: 3.8%;
+    /* justify-content: center; */
+    /* background: linear-gradient(50deg, #37E2D5, transparent); */
+}
+
+.grid_items {
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    transition: ease-in-out 0.3s;
+    height: 80%;
+}
+.grid_items:hover{
+    /* background: linear-gradient(red, yellow); */
+    transform: scale(1.04);
+    
+}
+.cards_container{
+    margin-top: 6%;
+    justify-content: center;
+    background: ;
+}
+#fillterHeader{
+    text-align: center;
+}
+#filters{
+    display: inline-flex;
+    justify-content: center;
+    width: max-content;
+}
+
+/* For Favourite Screen */
+
+#favouriteCards{
+    margin-left: 3.8%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+#favouriteScreenHeading{
+    text-align: center;
+    margin-top: 4%;
+}
