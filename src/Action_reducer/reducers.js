@@ -7,7 +7,7 @@ const initialState = {
     favCharacter:[],
     favCharacterId:[],
     numberOfFav:0,
-    prevFavcharacter:'',
+    prevFavcharacter:'Rick Sanchez',
     currentFavcharacter:'',
     loading:true,
     loaded:false,
@@ -62,6 +62,7 @@ const characterSlice = createSlice({
                 state.favCharacterId.splice(idSplice,1)
                 state.favCharacter.splice(index,1)
                 state.numberOfFav -= 1
+                state.prevFavcharacter = state.currentFavcharacter
                 state.currentFavcharacter=action.payload.name
                 console.log(index,idSplice)
 
@@ -71,6 +72,7 @@ const characterSlice = createSlice({
                 state.favCharacterId.push(`${action.payload.name}`)
                 state.loaded = true
                 state.numberOfFav += 1
+                state.currentFavcharacter=state.prevFavcharacter
             }
         })
         builder.addCase(favouriteCharacter.rejected,(state)=>{

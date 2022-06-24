@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { favouriteCharacter, getCharacter } from '../Action_reducer/reducers'
 import Card from '@mui/material/Card';
@@ -15,9 +15,8 @@ function Charactercards() {
     const characters = useSelector(state => state.CharacterReducer.characters.results)
     const loaded = useSelector(state => state.CharacterReducer.loaded)
     const favCharacterId = useSelector(state=>state.CharacterReducer.favCharacterId)
-    // console.log("character : ", characters)
-    // console.log("fav char",favCharacterId)
-    // console.log('length',favCharacterId.length)
+    const removedHeart = useSelector(state=>state.CharacterReducer.currentFavcharacter)
+    console.log(removedHeart)
     var removedElment = []
     const disptch = useDispatch()
     const setHeartIcon = () =>{
@@ -27,37 +26,44 @@ function Charactercards() {
                 ids.map(elem=>{
                     const documentId = document.getElementById(`${elem}`).style
                     documentId.color = 'red'
-                    console.log(`${elem}`)
                 })
             }
         }
     }
     const changeHeart = (idname) =>{
-        if(removedElment.length>0){
-        if (removedElment.filter(elem => elem === idname)) {
-            // console.log('removed')
-            // console.log('removed elemetn',removeId)
-            // setRemove({
-            //     removeId:[removeId,idname]
-            // })
-            console.log("removed element ", removedElment)
-            console.log("filte rmoev",removedElment.filter(elem=>elem===idname))
-            let index = removedElment.findIndex(elem => elem === idname)
-            const documentId = document.getElementById(`${idname}`).style
-            documentId.color = 'red'
-            removedElment.splice(index, 1)
+        // if(removedElment.length>0){
+        // if (removedElment.filter(elem => elem === idname)) {
+        //     // console.log('removed')
+        //     // console.log('removed elemetn',removeId)
+        //     // setRemove({
+        //     //     removeId:[removeId,idname]
+        //     // })
+        //     console.log("removed element ", removedElment)
+        //     console.log("filte rmoev",removedElment.filter(elem=>elem===idname))
+        //     let index = removedElment.findIndex(elem => elem === idname)
+        //     const documentId = document.getElementById(`${idname}`).style
+        //     documentId.color = 'red'
+        //     removedElment.splice(index, 1)
 
-        }}
-        else{
-            const documentId = document.getElementById(`${idname}`).style
-            documentId.color = 'black'
-            removedElment.push(idname)
-        }
+        // }}
+        // else{
+        //     const documentId = document.getElementById(`${idname}`).style
+        //     documentId.color = 'black'
+        //     removedElment.push(idname)
+        // }
+        const documentId = document.getElementById(`${idname}`).style
+        documentId.color = 'red'
+        removedElment.push(idname)
     }
     useEffect(() => {
         disptch(getCharacter())
         setHeartIcon()
     }, [])
+    // if(loaded){
+    //     const documentid = document.getElementById(removedHeart).style
+    //     documentid.color = 'black'
+
+    // }
     if (loaded) {
         var cards = characters.map((elem) => {
             return (
