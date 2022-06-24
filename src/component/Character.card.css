@@ -1,10 +1,10 @@
 .grid_container {
     /* margin-top: 8%; */
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     margin-top: 2%;
-    margin-left: 3.8%;
-    /* justify-content: center; */
+    /* margin-left: 3.8%; */
+    justify-content: center;
     /* background: linear-gradient(50deg, #37E2D5, transparent); */
 }
 
@@ -35,9 +35,11 @@
 /* For Favourite Screen */
 
 #favouriteCards{
-    margin-left: 3.8%;
+    /* margin-left: 3.8%; */
+    justify-content: center;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
+
 }
 
 #favouriteScreenHeading{

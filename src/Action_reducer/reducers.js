@@ -35,16 +35,38 @@ const characterSlice = createSlice({
     initialState,
     reducers:{
         removeMyfavourite:(state,id)=>{
-            console.log("im in remove")
-            console.log(state.favCharacter)
-            // const index = state.favCharacter.findIndex(elem=>elem.id===id)
-            // state.favCharacter(index,1)
+            let index = state.favCharacter.findIndex(elem=>elem.id===id.payload)
+            let indexChar = state.characters.results.findIndex(elem=>elem.id===id.payload)
+            state.characters.results[indexChar].icon = false
+            state.favCharacter.splice(index,1)
+            state.numberOfFav -= 1
+        },
+        addFavourite:(state,id)=>{
+            if(state.favCharacter.find(elem=>elem.id===id.payload)){
+                let index = state.favCharacter.findIndex(elem=>elem.id===id.payload)
+                let indexChar = state.characters.results.findIndex(elem=>elem.id===id.payload)
+                state.characters.results[indexChar].icon = false
+                state.favCharacter.splice(index,1)
+                state.numberOfFav -= 1
+            }
+            else{
+                let element = state.characters.results.filter(elem=>elem.id===id.payload)
+
+                element[0].icon = true
+                state.favCharacter.push(element[0])
+                state.numberOfFav += 1
+            }
         }
     },
     extraReducers:(builder)=>{
         builder.addCase(getCharacter.fulfilled,(state,action)=>{
             state.characters = action.payload
+            state.characters.results.map(elem=>elem['icon']=false)
             state.loaded = true
+            state.favCharacter.map(elem=>{
+                const getVal = state.characters.results.filter(innerElem=>innerElem.id===elem.id)
+                getVal[0].icon = true
+            })
         })
         builder.addCase(getCharacter.pending,(state)=>{
             state.loading = true
@@ -93,5 +115,5 @@ const characterSlice = createSlice({
     }
 })
 
-export const {removeMyfavourite} = characterSlice.actions
+export const {removeMyfavourite,addFavourite} = characterSlice.actions
 export default characterSlice.reducer;

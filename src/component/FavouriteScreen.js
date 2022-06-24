@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { favouriteCharacter } from '../Action_reducer/reducers';
+import { favouriteCharacter, removeMyfavourite } from '../Action_reducer/reducers';
 
 import './Character.card.css'
 
@@ -26,17 +26,12 @@ function FavouriteScreen() {
         <div className='grid_items'>
                 <Card sx={{ maxWidth: 345 }}>
                     <CardHeader
-                        action={
-                            <IconButton aria-label="settings">
-                                <MoreVertIcon />
-                            </IconButton>
-                        }
                         title={elem.name}
                         subheader={elem.created}
                     />
                     <CardMedia
                         component="img"
-                        height="auto"
+                        height="194"
                         image={elem.image}
                         alt="Paella dish"
                     />
@@ -57,14 +52,11 @@ function FavouriteScreen() {
                             ALIVE    :  {elem.status.toUpperCase()}
                         </Typography>
                     </CardContent>
-                    <CardActions disableSpacing>
+                    <CardActions sx={{'justifyContent':'center','display':'inline-flex'}} disableSpacing>
                         <IconButton sx={{'color':'red'}} aria-label="add to favorites" onClick={()=>{
-                            dispatch(favouriteCharacter(elem.url))
+                            dispatch(removeMyfavourite(elem.id))
                         }}>
                             <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                            <ShareIcon />
                         </IconButton>
                     </CardActions>
                 </Card>

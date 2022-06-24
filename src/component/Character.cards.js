@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { favouriteCharacter, getCharacter } from '../Action_reducer/reducers'
+import { favouriteCharacter, getCharacter, addFavourite } from '../Action_reducer/reducers'
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -11,7 +11,9 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import './Character.card.css'
 
+
 function Charactercards() {
+    
     const characters = useSelector(state => state.CharacterReducer.characters.results)
     const loaded = useSelector(state => state.CharacterReducer.loaded)
     const favCharacterId = useSelector(state=>state.CharacterReducer.favCharacterId)
@@ -75,7 +77,7 @@ function Charactercards() {
                     />
                     <CardMedia
                         component="img"
-                        height="auto"
+                        height="194"
                         image={elem.image}
                         alt="Paella dish"
                     />
@@ -99,9 +101,9 @@ function Charactercards() {
                             STATUS    :  {elem.status.toUpperCase()}
                         </Typography>
                     </CardContent>
-                    <CardActions disableSpacing>
-                        <IconButton id={`${elem.name}`} aria-label="add to favorites" onClick={(e)=>{
-                            disptch(favouriteCharacter(elem.url))
+                    <CardActions sx={{'justifyContent':'center','display':'inline-flex'}} disableSpacing>
+                        <IconButton sx={{"color":`${elem.icon?'red':'black'}`}} aria-label="add to favorites" onClick={(e)=>{
+                            disptch(addFavourite(elem.id))
                             changeHeart(`${elem.name}`)
                             setHeartIcon()
                         }}>
