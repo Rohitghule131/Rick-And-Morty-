@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fileterCharacter } from '../Action_reducer/Actions'
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { filterPara } from './CharactersScreen';
+import { searchedName } from './SearchButton';
 
-export var characterCount;
-export var pages;
+var pages = 1
+var characterCount = 1
 
 function PaginationOfPages() {
     const dispatch = useDispatch()
@@ -15,11 +17,16 @@ function PaginationOfPages() {
         pages = pageinfo.pages
         characterCount = pageinfo.count
     }
+    const disptchfilterParameter = (pagee)=>{
+      const {gender,status,species} = filterPara
+      const searchPara = `${gender}&${status}&${species}&${searchedName}&page=${pagee}`
+      dispatch(fileterCharacter(searchPara))
+    }
   return (
     <>
         <Stack spacing={2}>
       <Pagination count={pages} color="secondary" onChange={(e,page)=>{
-        dispatch(fileterCharacter(`page=${page}`))
+        disptchfilterParameter(page)
       }}/>
     </Stack>
     </>

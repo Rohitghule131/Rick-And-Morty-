@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import * as React from 'react'
 import Charactercards from './Character.cards'
 import "./Character.card.css"
 import Box from '@mui/material/Box';
@@ -7,21 +8,49 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { fileterCharacter } from '../Action_reducer/Actions';
-import { useDispatch } from 'react-redux';
-// 'species=Human&status=alive'
+import { useDispatch, useSelector } from 'react-redux';
 import SearchButton from './SearchButton';
-import { Grid, } from '@mui/material';
 import PaginationOfPages from './Pagination';
+import ErrorSuccessAlert from './extraComponent/AlertComponent';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+export var filterPara = {
+  gender:'',
+  status:'',
+  species:''
+} 
 
 function CharactersScreen() {
+  const [open, setOpen] = useState(false);
   // const [filtertype,setFilterType] = useState('')
   const [gender, setGender] = useState('')
   const [status, setStatus] = useState('')
   const [species, setSpecies] = useState('')
-  
+  const loadError = useSelector(state=>state.CharacterReducer.loadError)
   const disptch = useDispatch()
+  const handleClick = () => {
+    setOpen(true);
+    setTimeout(()=>{setOpen(false)},2000)
+  };
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
   if(gender || status || species ){
-    console.log(gender)
+    filterPara.gender = gender
+    filterPara.status = status
+    filterPara.species = species
+    var errorComponent = <ErrorSuccessAlert/>
     disptch(fileterCharacter(`${gender}&${status}&${species}`))
   }
 
@@ -29,7 +58,6 @@ function CharactersScreen() {
     'width':'100%',
     'display':'inline-flex',
     'justify-content':'center',
-    // 'border':'1px solid',
     'padding':'10px',
   }
   const styleBoxInput = {
@@ -50,11 +78,13 @@ function CharactersScreen() {
             value={species}
             onChange={e=>{
               setSpecies(e.target.value)
-              
+              handleClick()
             }}
           >
-            <MenuItem value={'species=human'}>Human</MenuItem>
             <MenuItem value={'species=alien'}>Alien</MenuItem>
+            <MenuItem value={'species=animal'}>Animal</MenuItem>
+            <MenuItem value={'species=human'}>Human</MenuItem>
+            <MenuItem value={'species=humanoid'}>Humanoid</MenuItem>
             <MenuItem value={'species=unknown'}>Unknown</MenuItem>
           </Select>
         </FormControl>
@@ -67,7 +97,7 @@ function CharactersScreen() {
             value={gender}
             onChange={e=>{
               setGender(e.target.value)
-              
+              handleClick()
             }}
           >
             <MenuItem value={'gender=male'}>Male</MenuItem>
@@ -84,7 +114,7 @@ function CharactersScreen() {
             value={status}
             onChange={e=>{
               setStatus(e.target.value)
-              
+              handleClick()
             }}
           >
             <MenuItem value={'status=alive'}>Alive</MenuItem>
@@ -94,14 +124,26 @@ function CharactersScreen() {
         </FormControl>
         <SearchButton/>
       </Box>
-      
+
       </div>
+      <Stack spacing={2} sx={{ width: '100%' }}>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        {loadError?<Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          Somthing Went Wrong!
+        </Alert>:<Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Yeah You FilterOut Characters!
+        </Alert>}
+      </Snackbar>
+      </Stack>
+
       <div className='grid_container'>
         <Charactercards />
       </div>
+
         <div id='pagination'>
           <PaginationOfPages/>
         </div>
+
     </div>
 
   )

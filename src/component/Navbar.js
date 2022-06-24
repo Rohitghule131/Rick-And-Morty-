@@ -18,7 +18,7 @@ function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <Link to={'/fav'}>
                             <button className="btn btn-outline-success active mx-2" type="">
-                                {number_of_favCharacter} My Favourite
+                                {number_of_favCharacter?number_of_favCharacter:""} My Favourite
                             </button>
                         </Link>
                     </div>

@@ -6,11 +6,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch } from 'react-redux';
 import { fileterCharacter } from '../Action_reducer/Actions';
 
+export var searchedName = ''
 export default function SearchButton() {
     const [name,setName] = useState('')
     const dispatch = useDispatch()
-    const nameHandler = ()=>{
+    const nameHandler = (e)=>{
+        e.preventDefault();
         console.log('searched name',name)
+        searchedName = `name=${name}`
         dispatch(fileterCharacter(`name=${name}`))
     }
   return (
@@ -26,10 +29,9 @@ export default function SearchButton() {
         placeholder="Search Character Name"
         inputProps={{ 'aria-label': 'search google maps' }}
       />
-      <IconButton onClick={()=>{
-        nameHandler()
-        console.log("searched")
-      }} sx={{ p: '10px' }} aria-label="search">
+      <IconButton onClick={
+        nameHandler
+      } sx={{ p: '10px' }} aria-label="search">
         <SearchIcon />
       </IconButton>
     </Paper>

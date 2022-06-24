@@ -9,17 +9,54 @@ import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import './Character.card.css'
 
 function Charactercards() {
     const characters = useSelector(state => state.CharacterReducer.characters.results)
     const loaded = useSelector(state => state.CharacterReducer.loaded)
-    console.log("character : ", characters)
+    const favCharacterId = useSelector(state=>state.CharacterReducer.favCharacterId)
+    // console.log("character : ", characters)
+    // console.log("fav char",favCharacterId)
+    // console.log('length',favCharacterId.length)
+    var removedElment = []
     const disptch = useDispatch()
+    const setHeartIcon = () =>{
+        if(loaded){
+            if(favCharacterId.length>0){
+                let ids = favCharacterId.map(elem=>{return(elem)})
+                ids.map(elem=>{
+                    const documentId = document.getElementById(`${elem}`).style
+                    documentId.color = 'red'
+                    console.log(`${elem}`)
+                })
+            }
+        }
+    }
+    const changeHeart = (idname) =>{
+        if(removedElment.length>0){
+        if (removedElment.filter(elem => elem === idname)) {
+            // console.log('removed')
+            // console.log('removed elemetn',removeId)
+            // setRemove({
+            //     removeId:[removeId,idname]
+            // })
+            console.log("removed element ", removedElment)
+            console.log("filte rmoev",removedElment.filter(elem=>elem===idname))
+            let index = removedElment.findIndex(elem => elem === idname)
+            const documentId = document.getElementById(`${idname}`).style
+            documentId.color = 'red'
+            removedElment.splice(index, 1)
+
+        }}
+        else{
+            const documentId = document.getElementById(`${idname}`).style
+            documentId.color = 'black'
+            removedElment.push(idname)
+        }
+    }
     useEffect(() => {
         disptch(getCharacter())
-        console.log("Api called")
+        setHeartIcon()
     }, [])
     if (loaded) {
         var cards = characters.map((elem) => {
@@ -47,6 +84,9 @@ function Charactercards() {
                             SPACIES  :  {elem.species.toUpperCase()}
                         </Typography>
                         <Typography fontSize='0.675rem' variant="body2" color="text.secondary">
+                            TYPE  :  {(elem.type.toUpperCase())?elem.type.toUpperCase():"None"}
+                        </Typography>
+                        <Typography fontSize='0.675rem' variant="body2" color="text.secondary">
                             GENDER  :  {elem.gender.toUpperCase()}
                         </Typography>
                         <Typography fontSize='0.675rem' variant="body2" color="text.secondary">
@@ -54,13 +94,12 @@ function Charactercards() {
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
-                        <IconButton aria-label="add to favorites" onClick={()=>{
+                        <IconButton id={`${elem.name}`} aria-label="add to favorites" onClick={(e)=>{
                             disptch(favouriteCharacter(elem.url))
+                            changeHeart(`${elem.name}`)
+                            setHeartIcon()
                         }}>
                             <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                            <ShareIcon />
                         </IconButton>
                     </CardActions>
                 </Card>

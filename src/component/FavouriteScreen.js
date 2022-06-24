@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,12 +10,16 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { favouriteCharacter } from '../Action_reducer/reducers';
+
 import './Character.card.css'
+
 
 function FavouriteScreen() {
   const fav_Character = useSelector(state=>state.CharacterReducer.favCharacter)
   const No_of_favcharacter = useSelector(state=>state.CharacterReducer.numberOfFav)
   console.log(fav_Character)
+  const dispatch = useDispatch()
   if(No_of_favcharacter>0){
     var favouriteCharacter_cards = fav_Character.map(elem=>{
       return(
@@ -54,9 +58,8 @@ function FavouriteScreen() {
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
-                        <IconButton aria-label="add to favorites" onClick={()=>{
-                            // disptch(favouriteCharacter(elem.url))
-                            console.log(elem.url)
+                        <IconButton sx={{'color':'red'}} aria-label="add to favorites" onClick={()=>{
+                            dispatch(favouriteCharacter(elem.url))
                         }}>
                             <FavoriteIcon />
                         </IconButton>
@@ -71,7 +74,7 @@ function FavouriteScreen() {
   }
   return (
     <>
-    <h5 id='favouriteScreenHeading'>My Favourite Characters</h5>
+    <h5 className='mt-15' id='favouriteScreenHeading'>My Favourite Characters</h5>
     <div id='favouriteCards'>
       {favouriteCharacter_cards}
     </div>
