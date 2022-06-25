@@ -28,8 +28,24 @@
 #fillterHeader{
     text-align: center;
 }
+#filterContainer{
+    display: flex;
+    justify-content: center;
+}
+
 #filters{
     border: 1px solid;
+    width: 95%;
+}
+#innerFilter{
+    width: 100%;
+    JUSTIFY-ITEMS: center;
+    padding: 10px;
+}
+#resetButton{
+    display:flex;
+    justify-content:center;
+    padding-top:10px;
 }
 
 /* For Favourite Screen */

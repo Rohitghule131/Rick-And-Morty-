@@ -9,7 +9,7 @@ import { searchedName } from './SearchButton';
 var pages = 1
 var characterCount = 1
 
-function PaginationOfPages() {
+function PaginationOfPages(props) {
     const dispatch = useDispatch()
     const pageinfo = useSelector(state=>state.CharacterReducer.characters.info)
     const loaded = useSelector(state=>state.CharacterReducer.loaded)

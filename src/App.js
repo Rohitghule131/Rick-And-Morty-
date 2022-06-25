@@ -13,7 +13,6 @@ function App() {
           <Route path='/fav' element={<FavouriteScreen />} />
         </Routes>
       </BrowserRouter>
-
     </div>
   )
 }

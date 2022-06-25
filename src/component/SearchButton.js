@@ -18,7 +18,7 @@ export default function SearchButton() {
     }
   return (
     <Paper
-      component="form"
+      component="search"
       sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
       style={{'margin':'3px'}}
     >

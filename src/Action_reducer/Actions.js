@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
-import { useSelector } from "react-redux"
 
 // filter action which is gives one parameter as argumente concate with rest api 
 // and return accessed json format
@@ -15,10 +14,10 @@ export const fileterCharacter = createAsyncThunk('get/filtercharacter',async(url
     return response.data
 })
 
-export const removeMyFavcharacter = createAsyncThunk('remove/cahracter', (id)=>{
-    console.log("claa",id)
-    const favCharacter = useSelector(state=>state.CharacterReducer.favCharacter)
-    const index = favCharacter.findIndex(elem=>elem.id===id)
-    console.log(favCharacter,index)
-    return index
+export const getCharacter = createAsyncThunk('get/character', async()=>{
+    const response = await axios.get('https://rickandmortyapi.com/api/character').catch((err)=>{
+        console.log("Error :- ",err)
+    })
+    console.log(response.data)
+    return response.data
 })
