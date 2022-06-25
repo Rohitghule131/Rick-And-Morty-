@@ -16,9 +16,6 @@ function Charactercards() {
     const characters = useSelector(state => state.CharacterReducer.characters.results)
     const loaded = useSelector(state => state.CharacterReducer.loaded)
     const disptch = useDispatch()
-    useEffect(() => {
-        disptch(getCharacter())
-    }, [])
     if (loaded) {
         var cards = characters.map((elem) => {
             return (
