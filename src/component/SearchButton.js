@@ -12,7 +12,6 @@ export default function SearchButton() {
     const dispatch = useDispatch()
     const nameHandler = (e)=>{
         e.preventDefault();
-        console.log('searched name',name)
         searchedName = `name=${name}`
         dispatch(fileterCharacter(`name=${name}`))
     }

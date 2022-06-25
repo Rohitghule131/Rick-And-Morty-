@@ -1,5 +1,4 @@
 import {createSlice } from "@reduxjs/toolkit"
-import axios from "axios"
 import { fileterCharacter, getCharacter } from "./Actions"
 
 const initialState = {
@@ -13,14 +12,6 @@ const initialState = {
     loaded:false,
     loadError:false,
 }
-
-// export const getCharacter = createAsyncThunk('get/character', async()=>{
-//     const response = await axios.get('https://rickandmortyapi.com/api/character').catch((err)=>{
-//         console.log("Error :- ",err)
-//     })
-//     console.log(response.data)
-//     return response.data
-// })
 
 const characterSlice = createSlice({
     name : 'chacter',

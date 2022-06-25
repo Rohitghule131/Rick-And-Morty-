@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path='' element={<CharactersScreen />} />
+          <Route path='/' element={<CharactersScreen />} />
           <Route path='/fav' element={<FavouriteScreen />} />
         </Routes>
       </BrowserRouter>
