@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path='/' element={<CharactersScreen />} />
+          <Route path='/Rick-And-Morty-' element={<CharactersScreen />} />
           <Route path='/fav' element={<FavouriteScreen />} />
         </Routes>
       </BrowserRouter>

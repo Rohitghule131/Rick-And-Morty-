@@ -7,7 +7,7 @@ function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg bg-light fixed-top">
             <div className="container-fluid">
-                <Link to={'/'} style={{'textDecoration':'none'}}>
+                <Link to={'/Rick-And-Morty-'} style={{'textDecoration':'none'}}>
                 <h5>RICK AND MORTY</h5>
                 </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

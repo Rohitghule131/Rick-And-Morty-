@@ -15,6 +15,11 @@ import './Character.card.css'
 function Charactercards() {
     const characters = useSelector(state => state.CharacterReducer.characters.results)
     const loaded = useSelector(state => state.CharacterReducer.loaded)
+    const dispatch = useDispatch()
+    useEffect(() => {
+      dispatch(getCharacter())
+    }, [])
+    
     const disptch = useDispatch()
     if (loaded) {
         var cards = characters.map((elem) => {

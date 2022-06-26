@@ -62,7 +62,6 @@ function CharactersScreen() {
     'width': '100%',
     'display': 'inline-flex',
     'justify-content': 'center',
-    // 'padding': '10px',
   }
   const styleBoxInput = {
     'width': '20%',
