@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React,{useEffect} from 'react'
+import Navbar from './component/Navbar'
+import FavouriteScreen from './component/FavouriteScreen'
+import CharactersScreen from './component/CharactersScreen'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { getCharacter } from './Action_reducer/Actions'
 function App() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getCharacter())
+  }, [])
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path='/Rick-And-Morty-' element={<CharactersScreen />} />
+          <Route path='/fav' element={<FavouriteScreen />} />
+        </Routes>
+      </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,0 +1,25 @@
+/* .link-btn{
+    text-decoration: none;
+    color: #fff;
+}
+
+li{
+    list-style-type: none;
+}
+ul{
+    display: inline-flex;
+}
+.countCandidate{
+    position: relative;
+    float: right;
+    margin-left: 70%;
+} */
+#Navbar-Button-Div{
+    display: contents;
+}
+
+@media screen and (min-width:992px) {
+    #Navbar-Button-Div{
+        display: flex;
+    }
+}

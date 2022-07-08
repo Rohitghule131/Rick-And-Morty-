@@ -1,0 +1,74 @@
+.grid_container {
+    /* margin-top: 8%; */
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    margin-top: 2%;
+    /* margin-left: 3.8%; */
+    justify-content: center;
+    /* background: linear-gradient(50deg, #37E2D5, transparent); */
+}
+
+.grid_items {
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    transition: ease-in-out 0.3s;
+    height: 80%;
+}
+.grid_items:hover{
+    /* background: linear-gradient(red, yellow); */
+    transform: scale(1.04);
+    
+}
+.cards_container{
+    margin-top: 6%;
+    justify-content: center;
+}
+#fillterHeader{
+    text-align: center;
+}
+#filterContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#filters{
+    border: 1px solid;
+    width: 95%;
+}
+#innerFilter{
+    width: 100%;
+    JUSTIFY-ITEMS: center;
+    padding: 10px;
+}
+#resetButton{
+    display:flex;
+    justify-content:center;
+    padding-top:10px;
+}
+
+/* For Favourite Screen */
+
+#favouriteCards{
+    /* margin-left: 3.8%; */
+    justify-content: center;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+
+}
+
+#favouriteScreenHeading{
+    text-align: center;
+    margin-top: 4%;
+}
+
+/* for pagination */
+
+#pagination{
+    background: honeydew;
+    display: inline-flex;
+    width: 100%;
+    padding: 22px;
+    justify-content: center;
+}
